@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -65,6 +65,11 @@ const Login = () => {
       setFormError(() => error.message)
     }
   }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token')
+    token && navigate('/')
+  }, [])
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
