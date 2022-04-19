@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes, BrowserRouter } from 'react-router-dom'
 import './scss/style.scss'
 import { PrivateRoute } from './utils/index'
 
@@ -20,7 +20,7 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={loading}>
           <Routes>
             <Route exact path="/login" name="Login Page" element={<Login />} />
@@ -36,7 +36,7 @@ class App extends Component {
             />
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 }
