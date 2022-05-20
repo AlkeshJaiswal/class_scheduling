@@ -35,7 +35,14 @@ const Class = () => {
     getCourses()
       .then((data) => {
         console.log(data)
-        setCourseData(data.results)
+        const coursesData = data.map((result) => {
+          return {
+            name: result.name,
+            yearSection: result.yearSection,
+            department: result.department.title,
+          }
+        })
+        setCourseData(coursesData)
       })
       .catch((error) => console.log(error))
     getDepartments()
