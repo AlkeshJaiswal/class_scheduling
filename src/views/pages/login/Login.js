@@ -19,12 +19,11 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { useForm } from 'react-hook-form'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { app } from '../../../firebase'
 import scsLogo from '../../../assets/images/scs-logo.png'
+import { signInWithEmailAndPassword } from 'src/apis/login'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -42,21 +41,17 @@ const Login = () => {
     try {
       setIsLoading(true)
       const { Email: email, Password: password } = data
-      const auth = getAuth()
-      const user = await signInWithEmailAndPassword(auth, email, password)
+      const { tokens, user } = await signInWithEmailAndPassword(email, password)
       setIsLoading(false)
 
-      const {
-        user: { accessToken, email: userEmail },
-      } = user
-      sessionStorage.setItem('token', accessToken)
+      sessionStorage.setItem('token', tokens.access.token)
 
       dispatch({
         type: 'set',
         isAuthenticated: true,
         user: {
-          token: accessToken,
-          email: userEmail,
+          token: tokens.access.token,
+          email: user.email,
         },
       })
       navigate('/')
