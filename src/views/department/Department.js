@@ -29,7 +29,7 @@ const Department = () => {
     getDepartments()
       .then((data) => {
         console.log(data)
-        setDepartmentData(data.results)
+        setDepartmentData(data)
         setIsTableLoading(false)
       })
       .catch((error) => {

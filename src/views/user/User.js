@@ -51,9 +51,9 @@ const User = () => {
     { key: 'phone', _style: { width: '20%' } },
   ]
 
-  const writeUserData = async (name, email, address, phone, city, role) => {
+  const writeUserData = async (name, email, address, phone, role, password) => {
     try {
-      const response = await addUser(name, email, address, phone, city, role)
+      const response = await addUser(name, email, address, phone, role, password)
       console.log(response)
     } catch (error) {
       console.log(error)
@@ -71,7 +71,8 @@ const User = () => {
       setIsLoading(true)
       const { firstName, lastName, email, address, phone, role } = data
       const name = firstName + ' ' + lastName
-      const password = firstName.toUpperCase + '_' + lastName + '@123'
+      const password = firstName.toUpperCase() + '_' + lastName + '@123'
+      console.log(password)
       await writeUserData(name, email, address, phone, role, password)
       setIsLoading(false)
       e.target.reset()
@@ -212,7 +213,7 @@ const User = () => {
                 // footer
                 items={userData}
                 // itemsPerPageSelect
-                itemsPerPage={5}
+                itemsPerPage={3}
                 pagination
                 // scopedColumns={{
                 //   status: (item) => (

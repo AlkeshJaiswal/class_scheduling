@@ -30,6 +30,16 @@ const Class = () => {
   const [departments, setDepartments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isTableLoading, setIsTableLoading] = useState(false)
+  const [year, setYear] = useState([
+    '2018-1A',
+    '2018-1b',
+    '2019-1A',
+    '2019-1B',
+    '2020-1A',
+    '2020-1B',
+    '2021-1A',
+    '2021-1B',
+  ])
 
   useEffect(() => {
     getCourses()
@@ -65,16 +75,16 @@ const Class = () => {
     { key: 'department', _style: { width: '20%' } },
   ]
 
-  const year = [
-    '2018-1A',
-    '2018-1b',
-    '2019-1A',
-    '2019-1B',
-    '2020-1A',
-    '2020-1B',
-    '2021-1A',
-    '2021-1B',
-  ]
+  // const year = [
+  //   '2018-1A',
+  //   '2018-1b',
+  //   '2019-1A',
+  //   '2019-1B',
+  //   '2020-1A',
+  //   '2020-1B',
+  //   '2021-1A',
+  //   '2021-1B',
+  // ]
 
   const writeCoursedata = async (name, year, departmentId) => {
     try {
@@ -126,21 +136,21 @@ const Class = () => {
               <CCol md={6}>
                 <CFormSelect aria-label="Default select example" {...register('year')}>
                   <option>Select Year</option>
-                  {year.map((value, id) => (
+                  {/* {year.map((value, id) => (
                     <option value={value} key={id}>
                       {value}
                     </option>
-                  ))}
+                  ))} */}
                 </CFormSelect>
               </CCol>
               <CCol xs={12}>
                 <CFormSelect aria-label="Default select example" {...register('departmentId')}>
                   <option>Select Department</option>
-                  {departments.map((dept) => (
+                  {/* {departments.map((dept) => (
                     <option value={dept.id} key={dept.id}>
                       {dept.title}
                     </option>
-                  ))}
+                  ))} */}
                 </CFormSelect>
               </CCol>
               <CCol xs={12}>
